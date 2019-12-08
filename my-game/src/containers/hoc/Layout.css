@@ -1,0 +1,28 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+}
+
+.Hangman{
+    border: 1px solid green;
+    height: 350px;
+    width: auto;
+}
+
+.Word{
+    height: 100px;
+    width: auto;
+    direction: rtl;
+    text-align: center;
+}
+
+.Msg {
+    direction: rtl;
+    color: red;
+}
+
+.Char{
+    border: 1px solid yellow;
+    padding: 10px;
+    direction: rtl;
+}

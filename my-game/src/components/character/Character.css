@@ -1,0 +1,23 @@
+.Letter{
+    display: inline-flex;
+    margin: 20px auto;
+    width: 10%;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.EmptyLetter{
+    display: inline-flex;
+    margin: 20px auto;
+    width: 10%;
+    height: 40px;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+}
