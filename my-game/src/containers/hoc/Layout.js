@@ -35,18 +35,43 @@ class Layout extends Component {
       'ש',
       'ת',
     ],
-    words: ['משפחה', 'עבודה', 'לימודים'],
+    words: [
+      'חנוכה',
+      'סביבון',
+      'נר',
+      'סופגניה',
+      'מכבים',
+      'חשמונאים',
+      'חנוכיה',
+      'יוונים',
+      'פח השמן',
+      'בית המקדש',
+      'מנורה',
+      'לביבה',
+      'לפיד',
+      'אבוקה',
+      'נס',
+      'גדול',
+      'היה',
+      'פה',
+      'כד קטן',
+      'כד',
+      'חג האורים',
+      'שמן',
+      'כד שמן',
+    ],
     word: '',
     gameStatus: '',
     charStatus: [],
     msg: '',
-    hangmanCounter: 0,
+    counter: 0,
   };
 
   handleChoose = max => {
-    const choosenWord = this.state.words[
-      Math.floor (Math.random () * Math.floor (max))
-    ];
+    // const choosenWord = this.state.words[
+    //   Math.floor (Math.random () * Math.floor (max))
+    // ];
+    const choosenWord = 'לימודים';
     [...this.state.charStatus] = choosenWord.split ('').map (ch => 0);
     console.log (this.state.charStatus, choosenWord);
     this.setState ({word: choosenWord, gameStatus: 'init', msg: ''});
@@ -54,29 +79,38 @@ class Layout extends Component {
 
   handleInputClick = ch => {
     const charStatusInput = [...this.state.charStatus];
-    if (this.state.word || charStatusInput.includes (0)) {
-      const chIndex = this.state.word
+    if (this.state.word && charStatusInput.includes (0)) {
+      /* const chIndex = this.state.word
         .split ('')
         .findIndex (
-          (item, index) => item === ch && charStatusInput[index] === 0
-        );
+          (item, index) =>
+            item === ch &&
+            charStatusInput[index] === 0 
+        ); */
+
+      let position = this.state.word.indexOf (ch);
+      let chIndex = position;
+
+      while (position !== -1) {
+        charStatusInput[position] = 1;
+        position = this.state.word.indexOf (ch, position + 1);
+      }
       if (chIndex > -1) {
-        charStatusInput[chIndex] = 1;
         this.setState ({
           charStatus: charStatusInput,
           msg: '',
           gameStatus: 'input',
         });
       } else {
-        const counter = this.state.hangmanCounter;
+        const hangmanCounter = this.state.counter;
         if (charStatusInput.includes (0)) {
-          this.setState ({hangmanCounter: counter + 1});
+          this.setState ({counter: hangmanCounter + 1, show: true});
         } else {
           this.setState ({msg: 'אנא בחר מילה'});
         }
       }
     } else {
-      this.setState ({msg: 'אנא בחר מילה'});
+      this.setState ({msg: 'כל הכבוד!!! :)'});
     }
   };
 
@@ -89,8 +123,7 @@ class Layout extends Component {
           </button>
         </div>
         <div className="Hangman">
-          {this.state.hangmanCounter}
-          <Hangman />
+          <Hangman show={this.state.show} counter={this.state.counter} />
         </div>
         <div className="Word">
           <Word
