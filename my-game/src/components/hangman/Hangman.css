@@ -1,0 +1,63 @@
+.HangmanContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.Ground {
+    border-bottom: 10px solid black;
+    width: 180px;
+    height: 5px;
+    margin: 0 auto;
+}
+
+.Tree {
+    border-right: 10px solid black;
+    border-top: 10px solid black;
+    height: 300px;
+    width: 100px;
+    margin: 0 auto;
+}
+
+.Rig {
+    border-left: 10px solid black;
+    height: 50px;
+    margin: 0 20%;
+}
+
+.Face {
+    height: 25px;
+    width: 25px;
+    background-color: black;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+.Body {
+    border-left: 10px solid black;
+    height: 100px;
+    margin: 0 20%;
+    z-index: 999;
+}
+
+.Hands {
+    z-index: -999;
+    position: absolute;
+    border: solid black;
+    border-width: 0px 3px 3px 0px;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    padding: 2%;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.Legs {
+    border: solid black;
+    border-width: 0px 3px 3px 0px;
+    height: 30px;
+    width: 30px;
+    padding: 8%;
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}

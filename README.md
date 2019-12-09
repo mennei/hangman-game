@@ -1,5 +1,5 @@
-# hungman-game
-React hungman game
+# hangman-game
+React hangman game
 
 Author:
 Menachem Segal

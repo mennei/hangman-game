@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Layout.css';
 import Character from '../../components/character/Character';
 import Word from '../../components/word/Word';
+import Hangman from '../../components/hangman/Hangman';
 
 class Layout extends Component {
   state = {
@@ -87,7 +88,10 @@ class Layout extends Component {
             בחר מילה
           </button>
         </div>
-        <div className="Hangman">{this.state.hangmanCounter}</div>
+        <div className="Hangman">
+          {this.state.hangmanCounter}
+          <Hangman />
+        </div>
         <div className="Word">
           <Word
             word={this.state.word}
