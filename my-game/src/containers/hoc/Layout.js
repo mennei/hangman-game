@@ -127,14 +127,12 @@ class Layout extends Component {
   render () {
     return (
       <div className="Container">
-        <div>
+        <div className="Btn">
           <button onClick={() => this.handleChoose (this.state.words.length)}>
             בחר מילה
           </button>
         </div>
-        <div className="Hangman">
-          <Hangman show={this.state.show} counter={this.state.counter} />
-        </div>
+
         <div className="Word">
           <Word
             word={this.state.word}
@@ -152,6 +150,9 @@ class Layout extends Component {
               clicked={() => this.handleInputClick (ch)}
             />
           ))}
+        </div>
+        <div className="Hangman">
+          <Hangman show={this.state.show} counter={this.state.counter} />
         </div>
       </div>
     );
