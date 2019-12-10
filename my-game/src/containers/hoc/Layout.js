@@ -71,7 +71,7 @@ class Layout extends Component {
     // const choosenWord = this.state.words[
     //   Math.floor (Math.random () * Math.floor (max))
     // ];
-    const choosenWord = 'בית המקדש';
+    const choosenWord = 'אנציקלופדיה';
     [...this.state.charStatus] = choosenWord.split ('').map (ch => 0);
     this.setState ({word: choosenWord, gameStatus: 'init', msg: ''});
   };
@@ -102,7 +102,8 @@ class Layout extends Component {
           this.setState ({msg: 'אנא בחר מילה'});
         }
       }
-    } else {
+    }
+    if (!charStatusInput.includes (0) && charStatusInput.length > 0) {
       this.setState ({msg: 'כל הכבוד!!! :)'});
     }
   };

@@ -5,12 +5,12 @@
 
 .Hangman{
     border: 1px solid green;
-    height: 350px;
+    height: 40%;
     width: auto;
 }
 
 .Word{
-    height: 100px;
+    height: 5%;
     width: auto;
     margin: 0 auto;
 }
