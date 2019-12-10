@@ -3,6 +3,7 @@ import './Layout.css';
 import Character from '../../components/character/Character';
 import Word from '../../components/word/Word';
 import Hangman from '../../components/hangman/Hangman';
+import TrashImg from '../../static/trash-icon.jpg';
 
 class Layout extends Component {
   state = {
@@ -125,6 +126,15 @@ class Layout extends Component {
   };
 
   render () {
+    let cssCode = {display: 'none'};
+    if (this.state.show) {
+      cssCode = {
+        display: 'block',
+        height: '5%',
+        margin: '0 auto',
+        marginTop: '230px',
+      };
+    }
     return (
       <div className="Container">
         <div className="Btn">
@@ -152,7 +162,16 @@ class Layout extends Component {
           ))}
         </div>
         <div className="Hangman">
-          <Hangman show={this.state.show} counter={this.state.counter} />
+          <div className="Picture">
+            <Hangman show={this.state.show} counter={this.state.counter} />
+          </div>
+          <div className="Trash">
+            <img
+              src={TrashImg}
+              alt="תמונת סל מיחזור"
+              style={({width: '50px', height: '60px'}, cssCode)}
+            />
+          </div>
         </div>
       </div>
     );

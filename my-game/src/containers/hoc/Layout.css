@@ -7,13 +7,22 @@
     margin: 0 auto;
 }
 
-.Hangman{
+.Hangman {
+    display: flex;
     border: 1px solid green;
     height: 40%;
     width: auto;
 }
 
-.Word{
+.Picture {
+    flex: 50%;
+}
+
+.Trash {
+    flex: 50%;
+}
+
+.Word {
     height: 5%;
     width: auto;
     margin: 0 auto;
