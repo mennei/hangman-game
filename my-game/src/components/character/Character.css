@@ -1,7 +1,9 @@
 .Letter{
     display: inline-flex;
+    flex-direction: column;
     margin: 20px auto;
-    width: 10%;
+    width: 50px;
+    height: 50px;
     text-align: center;
     box-shadow: 0 2px 3px #ccc;
     border: 1px solid #eee;
@@ -12,9 +14,10 @@
 
 .EmptyLetter{
     display: inline-flex;
+    flex-direction: column;
     margin: 20px auto;
-    width: 10%;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     text-align: center;
     box-shadow: 0 2px 3px #ccc;
     border: 1px solid black;
