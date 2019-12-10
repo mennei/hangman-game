@@ -68,19 +68,27 @@ class Layout extends Component {
   };
 
   handleChoose = max => {
-    // const choosenWord = this.state.words[
-    //   Math.floor (Math.random () * Math.floor (max))
-    // ];
-    const choosenWord = 'אנציקלופדיה';
+    const choosenWord = this.state.words[
+      Math.floor (Math.random () * Math.floor (max))
+    ];
+    // const choosenWord = 'אנציקלופדיה';
     [...this.state.charStatus] = choosenWord.split ('').map (ch => 0);
-    this.setState ({word: choosenWord, gameStatus: 'init', msg: ''});
+    this.setState ({
+      word: choosenWord,
+      gameStatus: 'init',
+      msg: '',
+      counter: 0,
+    });
   };
 
   handleInputClick = ch => {
     const charStatusInput = [...this.state.charStatus];
     if (this.state.word && charStatusInput.includes (0)) {
       let spaceIndex = this.state.word.indexOf (' ');
-      charStatusInput[spaceIndex] = 1;
+      if (spaceIndex !== -1) {
+        charStatusInput[spaceIndex] = 1;
+      }
+
       let position = this.state.word.indexOf (ch);
       let chIndex = position;
 
@@ -96,16 +104,24 @@ class Layout extends Component {
         });
       } else {
         const hangmanCounter = this.state.counter;
-        if (charStatusInput.includes (0)) {
+        if (charStatusInput.includes (0) && hangmanCounter <= 6) {
           this.setState ({counter: hangmanCounter + 1, show: true});
         } else {
-          this.setState ({msg: 'אנא בחר מילה'});
+          this.setState ({
+            counter: 0,
+            msg: 'אויי חבל... :( אפשר לנסות שוב. בהצלחה!',
+            show: false,
+          });
         }
       }
     }
     if (!charStatusInput.includes (0) && charStatusInput.length > 0) {
-      this.setState ({msg: 'כל הכבוד!!! :)'});
+      this.setState ({msg: 'כל הכבוד!!! :)', show: false});
     }
+    if (charStatusInput.length === 0) {
+      this.setState ({msg: 'אנא בחר מילה'});
+    }
+    // console.log (this.state);
   };
 
   render () {

@@ -2,8 +2,9 @@ import React from 'react';
 import './Hangman.css';
 
 const Hangman = props => {
+  //   console.log (props);
   const {show, counter} = props;
-  let cssCode = {visibility: 'hidden;'};
+  let cssCode = {visibility: 'hidden'};
   if (show) {
     cssCode = {visibility: 'visible'};
   }

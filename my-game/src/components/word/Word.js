@@ -2,7 +2,7 @@ import React from 'react';
 import Character from '../character/Character';
 
 const Word = props => {
-  console.log (props);
+  //   console.log (props);
   let word = props.word.split ('').map ((ch, index) => {
     let display = null;
     if (props.charStatus[index] === 0) {
