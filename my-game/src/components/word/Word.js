@@ -25,6 +25,16 @@ const Word = props => {
         />
       );
     }
+    if (ch === ' ') {
+      display = (
+        <Character
+          key={index}
+          letter="-"
+          gameStatus={props.gameStatus}
+          charStatus={props.charStatus}
+        />
+      );
+    }
     return display;
   });
 

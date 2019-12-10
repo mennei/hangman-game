@@ -71,23 +71,16 @@ class Layout extends Component {
     // const choosenWord = this.state.words[
     //   Math.floor (Math.random () * Math.floor (max))
     // ];
-    const choosenWord = 'לימודים';
+    const choosenWord = 'בית המקדש';
     [...this.state.charStatus] = choosenWord.split ('').map (ch => 0);
-    console.log (this.state.charStatus, choosenWord);
     this.setState ({word: choosenWord, gameStatus: 'init', msg: ''});
   };
 
   handleInputClick = ch => {
     const charStatusInput = [...this.state.charStatus];
     if (this.state.word && charStatusInput.includes (0)) {
-      /* const chIndex = this.state.word
-        .split ('')
-        .findIndex (
-          (item, index) =>
-            item === ch &&
-            charStatusInput[index] === 0 
-        ); */
-
+      let spaceIndex = this.state.word.indexOf (' ');
+      charStatusInput[spaceIndex] = 1;
       let position = this.state.word.indexOf (ch);
       let chIndex = position;
 
