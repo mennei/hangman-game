@@ -1,4 +1,4 @@
-.Container{
+.Container {
     display: flex;
     flex-direction: column;
 }
@@ -10,8 +10,8 @@
 .Hangman {
     display: flex;
     border: 1px solid green;
-    height: 40%;
-    width: auto;
+    /* height: 40%;
+    width: auto; */
 }
 
 .Picture {
@@ -20,6 +20,10 @@
 
 .Trash {
     flex: 50%;
+}
+
+.TrashCharContainer {
+    text-align: center;
 }
 
 .Word {
@@ -35,8 +39,8 @@
     text-align: center;
 }
 
-.Char{
+.Char {
     border: 1px solid yellow;
-    padding: 1px;
     direction: rtl;
+    margin: 0 auto;
 }

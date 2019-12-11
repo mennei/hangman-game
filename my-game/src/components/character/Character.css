@@ -24,3 +24,55 @@
     padding: 10px;
     box-sizing: border-box;
 }
+
+.TrashLetter {
+    display: inline-flex;
+    flex-direction: column;
+    margin: 2px auto;
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    box-shadow: 0 2px 3px #ccc;
+    border: 1px solid #eee;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.Modal {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 7%;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    box-sizing: border-box;
+    /* transition: all 0.3s ease-out; */
+    transition: width 2s, height 4s;
+}
+
+.TrashOpen{
+    width: 50px;
+    height: 50px;
+}
+
+.TrashClose{
+    /* opacity: 0;
+    transform: translateY(-100); */
+    visibility: hidden;
+}
+
+@keyframes FullTrash {
+    0% {
+    opacity: 0;
+    transform: translateY(-100%);
+    }
+    50% {
+opacity: 1;
+    transform: translateY(90%);
+    }
+    100% {
+opacity: 0;
+    transform: translateY(100%);
+    }
+}

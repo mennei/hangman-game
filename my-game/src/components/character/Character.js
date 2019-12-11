@@ -2,7 +2,8 @@ import React from 'react';
 import './Character.css';
 
 const Character = props => {
-  const {charStatus, gameStatus, clicked} = props;
+  const {charStatus, gameStatus, clicked, show} = props;
+  const cssClasses = ['TrashLetter', show ? 'TrashOpen' : 'TrashClosed'];
   let displayCharStatus = null;
 
   if (charStatus === 0 || gameStatus === 'init') {
@@ -13,7 +14,11 @@ const Character = props => {
       <div className="Letter" onClick={clicked}>{props.letter}</div>
     );
   }
-
+  if (show) {
+    displayCharStatus = (
+      <div className={cssClasses.join (' ')}>{props.letter}</div>
+    );
+  }
   return displayCharStatus;
 };
 
