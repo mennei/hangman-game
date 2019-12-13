@@ -2,21 +2,28 @@ import React from 'react';
 import './Character.css';
 
 const Character = props => {
-  const {charStatus, gameStatus, clicked, show} = props;
-  const cssClasses = ['TrashLetter', show ? 'TrashOpen' : 'TrashClosed'];
+  console.log (props);
+  const {gameStatus, clicked, show, isCurrect} = props;
+  const cssClasses = ['Letter', isCurrect ? 'CurrectLetter' : 'QuestionMark'];
+  const trashCssClasses = [
+    'TrashLetter',
+    show ? 'TrashOpen WorngLetter' : 'TrashClosed',
+  ];
   let displayCharStatus = null;
 
-  if (charStatus === 0 || gameStatus === 'init') {
+  if (gameStatus === 'init') {
     displayCharStatus = <div className="EmptyLetter">{props.letter}</div>;
   }
   if (gameStatus === 'input') {
     displayCharStatus = (
-      <div className="Letter" onClick={clicked}>{props.letter}</div>
+      <div className={cssClasses.join (' ')} onClick={clicked}>
+        {props.letter}
+      </div>
     );
   }
   if (show) {
     displayCharStatus = (
-      <div className={cssClasses.join (' ')}>{props.letter}</div>
+      <div className={trashCssClasses.join (' ')}>{props.letter}</div>
     );
   }
   return displayCharStatus;

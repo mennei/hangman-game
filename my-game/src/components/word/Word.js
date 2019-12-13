@@ -20,6 +20,7 @@ const Word = props => {
         <Character
           key={index}
           letter={ch}
+          isCurrect={props.isCurrect}
           gameStatus={props.gameStatus}
           charStatus={props.charStatus}
         />

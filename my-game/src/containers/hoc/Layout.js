@@ -68,6 +68,7 @@ class Layout extends Component {
     msg: '',
     counter: 0,
     trashChars: [],
+    isCurrect: false,
   };
 
   handleChoose = max => {
@@ -104,6 +105,7 @@ class Layout extends Component {
           charStatus: charStatusInput,
           msg: '',
           gameStatus: 'input',
+          isCurrect: true,
         });
       } else {
         const hangmanCounter = this.state.counter;
@@ -116,12 +118,17 @@ class Layout extends Component {
             msg: 'אויי חבל... :( אפשר לנסות שוב. בהצלחה!',
             show: false,
             trashChars: [],
+            isCurrect: false,
           });
         }
       }
     }
     if (!charStatusInput.includes (0) && charStatusInput.length > 0) {
-      this.setState ({msg: 'כל הכבוד!!! :)', show: false, trashChars: []});
+      this.setState ({
+        msg: 'כל הכבוד!!! :)',
+        show: false,
+        trashChars: [],
+      });
     }
     if (charStatusInput.length === 0) {
       this.setState ({msg: 'אנא בחר מילה'});
@@ -161,6 +168,7 @@ class Layout extends Component {
             word={this.state.word}
             gameStatus={this.state.gameStatus}
             charStatus={this.state.charStatus}
+            isCurrect={this.state.isCurrect}
           />
         </div>
         <div className="Msg">{this.state.msg}</div>
@@ -187,7 +195,7 @@ class Layout extends Component {
               />
             </div>
             <div className="TrashCharContainer">
-              {this.state.trashChars.map((ch, index) => (
+              {this.state.trashChars.map ((ch, index) => (
                 <Character
                   key={index}
                   letter={ch}
