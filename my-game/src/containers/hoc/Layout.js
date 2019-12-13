@@ -179,8 +179,15 @@ class Layout extends Component {
             <Hangman show={this.state.show} counter={this.state.counter} />
           </div>
           <div className="Trash">
+            <div>
+              <img
+                src={TrashImg}
+                alt="תמונת סל מיחזור"
+                style={({width: '50px', height: '60px'}, cssCode)}
+              />
+            </div>
             <div className="TrashCharContainer">
-              {this.state.trashChars.map ((ch, index) => (
+              {this.state.trashChars.map((ch, index) => (
                 <Character
                   key={index}
                   letter={ch}
@@ -188,13 +195,6 @@ class Layout extends Component {
                   show={this.state.show}
                 />
               ))}
-            </div>
-            <div>
-              <img
-                src={TrashImg}
-                alt="תמונת סל מיחזור"
-                style={({width: '50px', height: '60px'}, cssCode)}
-              />
             </div>
           </div>
         </div>
