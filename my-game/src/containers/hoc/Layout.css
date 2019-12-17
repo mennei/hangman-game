@@ -10,8 +10,10 @@
 .Hangman {
     display: flex;
     border: 1px solid green;
-    /* height: 40%;
-    width: auto; */
+}
+
+.Space {
+    height: 20px;
 }
 
 .Picture {

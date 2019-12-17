@@ -3,8 +3,7 @@ import './Layout.css';
 import Character from '../../components/character/Character';
 import Word from '../../components/word/Word';
 import Hangman from '../../components/hangman/Hangman';
-// import TrashImg from '../../static/trash-icon.jpg';
-import TrashImg from '../../static/Trashcan.png';
+import TrashImg from '../../static/images/Trashcan.png';
 
 class Layout extends Component {
   state = {
@@ -69,13 +68,13 @@ class Layout extends Component {
     counter: 0,
     trashChars: [],
     isCurrect: false,
+    soundUrl: '',
   };
 
   handleChoose = max => {
     const choosenWord = this.state.words[
       Math.floor (Math.random () * Math.floor (max))
     ];
-    // const choosenWord = 'אנציקלופדיה';
     [...this.state.charStatus] = choosenWord.split ('').map (ch => 0);
     this.setState ({
       word: choosenWord,
@@ -113,13 +112,17 @@ class Layout extends Component {
           this.handleTrashChar (ch);
           this.setState ({counter: hangmanCounter + 1, show: true});
         } else {
-          this.setState ({
-            counter: 0,
-            msg: 'אויי חבל... :( אפשר לנסות שוב. בהצלחה!',
-            show: false,
-            trashChars: [],
-            isCurrect: false,
-          });
+          this.setState (
+            {
+              counter: 0,
+              msg: 'אויי חבל... :( אפשר לנסות שוב. בהצלחה!',
+              show: false,
+              trashChars: [],
+              isCurrect: false,
+              soundUrl: './try_again.mp3',
+            },
+            () => this.handleSoundInteration ()
+          );
         }
       }
     }
@@ -144,15 +147,32 @@ class Layout extends Component {
     this.setState ({trashChars: displayTrashChars});
   };
 
+  handleSoundInteration = () => {
+    const audio = new Audio (this.state.soundUrl);
+    const playPromise = audio.play ();
+    if (playPromise !== undefined) {
+      playPromise
+        .then (function () {
+          console.log ('Automatic playback started!');
+        })
+        .catch (function (error) {
+          console.log ('Automatic playback failed.', error);
+          // Show a UI element to let the user manually start playback.
+        });
+    }
+    console.log (audio);
+  };
+
   render () {
     let cssCode = {display: 'none'};
     if (this.state.show) {
       cssCode = {
         display: 'block',
-        height: '5%',
-        width: '45%',
+        height: '3%',
+        width: '40%',
         margin: '0 auto',
         marginTop: '5px',
+        padding: '15px',
       };
     }
     return (
@@ -184,6 +204,7 @@ class Layout extends Component {
         </div>
         <div className="Hangman">
           <div className="Picture">
+            <div className="Space" />
             <Hangman show={this.state.show} counter={this.state.counter} />
           </div>
           <div className="Trash">

@@ -2,7 +2,7 @@ import React from 'react';
 import './Character.css';
 
 const Character = props => {
-  console.log (props);
+  // console.log (props);
   const {gameStatus, clicked, show, isCurrect} = props;
   const cssClasses = ['Letter', isCurrect ? 'CurrectLetter' : 'QuestionMark'];
   const trashCssClasses = [
