@@ -4,6 +4,8 @@ import Character from '../../components/character/Character';
 import Word from '../../components/word/Word';
 import Hangman from '../../components/hangman/Hangman';
 import TrashImg from '../../static/images/Trashcan.png';
+import tryAgainCoolSource from '../../static/sounds/try_again_cool.mp3';
+import excelland from '../../static/sounds/excelland.mp3';
 
 class Layout extends Component {
   state = {
@@ -36,7 +38,7 @@ class Layout extends Component {
       'ש',
       'ת',
     ],
-    words: [
+    /* words: [
       'חנוכה',
       'סביבון',
       'נר',
@@ -60,6 +62,43 @@ class Layout extends Component {
       'חג האורים',
       'שמן',
       'כד שמן',
+    ], */
+    words: [
+      'טו בשבט',
+      'אילנות',
+      'חיטה',
+      'שעורה',
+      'גפן',
+      'תאנה',
+      'רימון',
+      'זית',
+      'שמן',
+      'תמרים',
+      'שבעת המינים',
+      'ערלה',
+      'רבעי',
+      'ביכורים',
+      'אדמה',
+      'פירות',
+      'לקט',
+      'שכחה',
+      'פאה',
+      'מעשרות',
+      'אורן',
+      'אלון',
+      'דקל',
+      'ברוש',
+      'ארז',
+      'חרוב',
+      'אקליפטוס',
+      'אתרוג',
+      'שקדיה',
+      'נטיעות',
+      'שדה',
+      'שתיל',
+      'חורשה',
+      'יער',
+      'קרן קיימת לישראל',
     ],
     word: '',
     gameStatus: '',
@@ -68,7 +107,15 @@ class Layout extends Component {
     counter: 0,
     trashChars: [],
     isCurrect: false,
-    soundUrl: '',
+    source: null,
+  };
+
+  onTrackChange = sourceItem => {
+    this.setState ({source: sourceItem}, () => {
+      this.refs.audio.pause ();
+      this.refs.audio.load ();
+      this.refs.audio.play ();
+    });
   };
 
   handleChoose = max => {
@@ -119,19 +166,23 @@ class Layout extends Component {
               show: false,
               trashChars: [],
               isCurrect: false,
-              soundUrl: './try_again.mp3',
+              source: tryAgainCoolSource,
             },
-            () => this.handleSoundInteration ()
+            () => this.onTrackChange (this.state.source)
           );
         }
       }
     }
     if (!charStatusInput.includes (0) && charStatusInput.length > 0) {
-      this.setState ({
-        msg: 'כל הכבוד!!! :)',
-        show: false,
-        trashChars: [],
-      });
+      this.setState (
+        {
+          msg: 'כל הכבוד!!! :)',
+          show: false,
+          trashChars: [],
+          source: excelland,
+        },
+        () => this.onTrackChange (this.state.source)
+      );
     }
     if (charStatusInput.length === 0) {
       this.setState ({msg: 'אנא בחר מילה'});
@@ -145,22 +196,6 @@ class Layout extends Component {
       displayTrashChars.push (ch);
     }
     this.setState ({trashChars: displayTrashChars});
-  };
-
-  handleSoundInteration = () => {
-    const audio = new Audio (this.state.soundUrl);
-    const playPromise = audio.play ();
-    if (playPromise !== undefined) {
-      playPromise
-        .then (function () {
-          console.log ('Automatic playback started!');
-        })
-        .catch (function (error) {
-          console.log ('Automatic playback failed.', error);
-          // Show a UI element to let the user manually start playback.
-        });
-    }
-    console.log (audio);
   };
 
   render () {
@@ -177,6 +212,9 @@ class Layout extends Component {
     }
     return (
       <div className="Container">
+        <audio ref="audio">
+          <source src={this.state.source} />
+        </audio>
         <div className="Btn">
           <button onClick={() => this.handleChoose (this.state.words.length)}>
             בחר מילה
